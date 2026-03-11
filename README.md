@@ -5,7 +5,7 @@ Telegram bot that bridges messages to a Claude Code agent. Each conversation mai
 ## Install
 
 ```bash
-uv tool install "git+https://github.com/dodeca-6-tope/claude-telegram.git"
+curl -fsSL https://raw.githubusercontent.com/dodeca-6-tope/claude-telegram/main/setup.sh | bash
 ```
 
 Requires [Claude Code](https://docs.anthropic.com/en/docs/claude-code).
