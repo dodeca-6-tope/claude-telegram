@@ -30,7 +30,7 @@ def _ask_agent(text: str, cmd: list[str], cwd: Path) -> str:
 
 def main():
     parser = argparse.ArgumentParser(description="Telegram bot → Claude Code agent")
-    parser.add_argument("--name", default="claude-telegram", help="session name (default: claude-telegram)")
+    parser.add_argument("--name", default="default", help="session name (default: default)")
     parser.add_argument("--system-prompt", help="system prompt for the agent")
     parser.add_argument("--allowed-tools", help='tools the agent can use (e.g. "Bash(jora *)")')
     args = parser.parse_args()
@@ -42,8 +42,8 @@ def main():
 
     allowed_user = os.environ.get("TELEGRAM_USER_ID")
 
-    cwd = Path("/tmp") / args.name
-    cwd.mkdir(exist_ok=True)
+    cwd = Path("/tmp/claude-telegram") / args.name
+    cwd.mkdir(parents=True, exist_ok=True)
 
     cmd = ["claude", "-p", "--output-format", "json", "--continue"]
     if args.system_prompt:

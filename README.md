@@ -22,7 +22,7 @@ claude-telegram
 ### Options
 
 ```
---name              session name, persisted at /tmp/<name> (default: claude-telegram)
+--name              session name, persisted at /tmp/claude-telegram/<name> (default: default)
 --system-prompt     system prompt for the agent
 --allowed-tools     tools the agent can use (e.g. "Bash(jora *)")
 ```
