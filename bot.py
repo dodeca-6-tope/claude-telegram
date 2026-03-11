@@ -13,6 +13,14 @@ import telebot
 _env = {k: v for k, v in os.environ.items() if k != "CLAUDECODE"}
 _lock = threading.Lock()
 
+_DEFAULT_SYSTEM_PROMPT = (
+    "You are a helpful assistant in a Telegram chat. "
+    "Keep responses concise and well-formatted for mobile reading. "
+    "Use short paragraphs. Avoid markdown headers and horizontal rules — "
+    "Telegram renders plain text, *bold*, _italic_, and `code` blocks. "
+    "Do not use tools or produce code unless the user explicitly asks for it."
+)
+
 
 def _ask_agent(text: str, cmd: list[str], cwd: Path) -> str:
     with _lock:
@@ -46,8 +54,8 @@ def main():
     cwd.mkdir(parents=True, exist_ok=True)
 
     cmd = ["claude", "-p", "--output-format", "json", "--continue"]
-    if args.system_prompt:
-        cmd += ["--append-system-prompt", args.system_prompt]
+    system_prompt = args.system_prompt or _DEFAULT_SYSTEM_PROMPT
+    cmd += ["--append-system-prompt", system_prompt]
     if args.allowed_tools:
         cmd += ["--allowedTools", args.allowed_tools]
 
