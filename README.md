@@ -19,14 +19,16 @@ export TELEGRAM_USER_ID=...     # your numeric user ID (optional, restricts acce
 claude-telegram
 ```
 
-### Customizing the agent
+### Options
 
-```bash
-# Give Claude a system prompt
-export CLAUDE_SYSTEM_PROMPT="You are a task management assistant. Be brief."
-
-# Restrict which tools Claude can use
-export CLAUDE_ALLOWED_TOOLS="Bash(jora *)"
+```
+--name              session name, persisted at /tmp/<name> (default: claude-telegram)
+--system-prompt     system prompt for the agent
+--allowed-tools     tools the agent can use (e.g. "Bash(jora *)")
 ```
 
-Both are optional. Without them, Claude runs with default settings.
+Example:
+
+```bash
+claude-telegram --name jora --system-prompt "Be brief." --allowed-tools "Bash(jora *)"
+```
