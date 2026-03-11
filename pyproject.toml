@@ -1,0 +1,9 @@
+[project]
+name = "claude-telegram"
+version = "0.1.0"
+description = "Telegram bot that bridges messages to a Claude Code agent"
+requires-python = ">=3.10"
+dependencies = ["pyTelegramBotAPI"]
+
+[project.scripts]
+claude-telegram = "bot:main"
